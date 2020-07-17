@@ -9,9 +9,9 @@ import Routes from './routes';
 const customHistory = createBrowserHistory();
 
 ReactDOM.render(
-  <React.StrictMode>
+  <div>
     <Routes history={customHistory} />
-  </React.StrictMode>,
+  </div>,
   document.getElementById('root'),
 );
 
