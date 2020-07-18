@@ -37,13 +37,13 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
-          <Route path="/posts">
+          <Route exact path="/">
             <Posts
               {...this.state}
               firebase={firebase.database()}
             />
           </Route>
-          <Route path="/add-post">
+          <Route exact path="/add-post">
             <AddPost
               {...this.state}
               firebase={firebase.database()}

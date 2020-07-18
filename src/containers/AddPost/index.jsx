@@ -1,4 +1,6 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { Link, withRouter } from 'react-router-dom';
 
 class AddPost extends Component {
   constructor(props) {
@@ -27,6 +29,7 @@ class AddPost extends Component {
     this.setState({
       title: '',
     });
+    this.props.history.push('/');
   }
 
   render() {
@@ -41,9 +44,17 @@ class AddPost extends Component {
         <button type="submit" onClick={this.handleSubmit}>
           Submit
         </button>
+        <Link to="/">
+          <button type="button">Cancel</button>
+        </Link>
       </div>
     );
   }
 }
 
-export default AddPost;
+export default withRouter(AddPost);
+
+AddPost.propTypes = {
+  firebase: PropTypes.objectOf(PropTypes.any).isRequired,
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
+};
