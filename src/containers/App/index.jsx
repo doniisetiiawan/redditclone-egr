@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
+import { Route, Switch } from 'react-router-dom';
 import config from './firebase-config';
+import Posts from '../Posts';
+import AddPost from '../AddPost';
 
 class App extends Component {
   constructor(props) {
@@ -33,12 +36,20 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.props.children
-          && React.cloneElement(this.props.children, {
-            firebaseRef: firebase.database().ref('posts'),
-            posts: this.state.posts,
-            loading: this.state.loading,
-          })}
+        <Switch>
+          <Route path="/posts">
+            <Posts
+              {...this.state}
+              firebase={firebase.database()}
+            />
+          </Route>
+          <Route path="/add-post">
+            <AddPost
+              {...this.state}
+              firebase={firebase.database()}
+            />
+          </Route>
+        </Switch>
       </div>
     );
   }
